@@ -4,7 +4,6 @@ import { CheckCircle2, Target, Eye, MapPin, Phone, Mail, Star, Users, Clock, Shi
 import SiteLayout from "@/components/SiteLayout";
 import PageHeader from "@/components/PageHeader";
 import Stats from "@/components/sections/Stats";
-import CTABanner from "@/components/sections/CTABanner";
 
 const whyChooseUs = [
   { icon: ShieldCheck, title: "Certified Technicians", desc: "Our team consists of highly trained and certified professionals." },

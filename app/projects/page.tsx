@@ -13,7 +13,7 @@ export default function Projects() {
       return fs.readdirSync(dirPath)
         .filter(file => file.endsWith('.webp') || file.endsWith('.jpg') || file.endsWith('.png'))
         .map(file => path.join('/Projects', subDir, file));
-    } catch (e) {
+    } catch {
       return [];
     }
   };

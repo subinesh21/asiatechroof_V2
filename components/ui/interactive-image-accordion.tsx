@@ -1,12 +1,25 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
-// --- Data for the image accordion ---
+// --- Interfaces ---
+interface Category {
+  id: number | string;
+  title: string;
+  imageUrl: string;
+  gallery: string[];
+}
 
+interface AccordionItemProps {
+  item: Category;
+  isActive: boolean;
+  onClick: () => void;
+  onMouseEnter: () => void;
+}
 
 // --- Accordion Item Component ---
-const AccordionItem = ({ item, isActive, onClick, onMouseEnter }: { item: any, isActive: boolean, onClick: () => void, onMouseEnter: () => void }) => {
+const AccordionItem = ({ item, isActive, onClick, onMouseEnter }: AccordionItemProps) => {
   return (
     <div
       className={`
@@ -18,11 +31,12 @@ const AccordionItem = ({ item, isActive, onClick, onMouseEnter }: { item: any, i
       onMouseEnter={onMouseEnter}
     >
       {/* Background Image */}
-      <img
+      <Image
         src={item.imageUrl}
         alt={item.title}
-        className="absolute inset-0 w-full h-full object-cover"
-        onError={(e: any) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x450/2d3748/ffffff?text=Image+Error'; }}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 400px, 400px"
       />
       {/* Dark overlay for better text readability */}
       <div className={`absolute inset-0 transition-colors duration-500 ${isActive ? 'bg-black/20' : 'bg-black/50 hover:bg-black/30'}`}></div>
@@ -47,7 +61,7 @@ const AccordionItem = ({ item, isActive, onClick, onMouseEnter }: { item: any, i
 
 
 // --- Main App Component ---
-export function LandingAccordionItem({ categories }: { categories: any[] }) {
+export function LandingAccordionItem({ categories }: { categories: Category[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   if (!categories || categories.length === 0) return null;
@@ -75,7 +89,7 @@ export function LandingAccordionItem({ categories }: { categories: any[] }) {
           {/* Middle Side: Image Accordion */}
           <div className="w-full">
             <div className="flex flex-row items-center justify-center gap-3 md:gap-6 overflow-x-auto scrollbar-hide">
-              {categories.map((item: any, index: number) => (
+              {categories.map((item, index) => (
                 <AccordionItem
                   key={item.id}
                   item={item}
@@ -93,12 +107,14 @@ export function LandingAccordionItem({ categories }: { categories: any[] }) {
               <p className="text-sm uppercase tracking-widest text-ink/40 font-semibold">— Projects in {categories[activeIndex].title}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {categories[activeIndex].gallery.map((img: string, idx: number) => (
+              {categories[activeIndex].gallery.map((img, idx) => (
                 <div key={idx} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-cream">
-                  <img 
+                  <Image 
                     src={img} 
                     alt={`${categories[activeIndex].title} project ${idx + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-ink/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 </div>

@@ -58,7 +58,7 @@ export default function BlogTeaser() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [posts.length]);
 
   return (
     <section ref={sectionRef} className="relative h-screen overflow-hidden bg-ink">
