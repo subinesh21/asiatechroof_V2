@@ -3,9 +3,9 @@ import { useReveal } from "@/hooks/useReveal";
 import { ShieldCheck, Wrench, Award } from "lucide-react";
 
 const items = [
-  { icon: ShieldCheck, title: "Free Site Inspection", body: "We assess your roof on-site at no cost — giving you an honest evaluation and clear quote." },
-  { icon: Wrench, title: "Certified Workers", body: "Every technician is fully trained, certified, and backed by 20+ years of experience." },
-  { icon: Award, title: "Fast 24hr Response", body: "Roof emergencies can't wait. Our team responds within 24 hours to minimise damage." },
+  { icon: ShieldCheck, title: "Free Site Inspection", body: "We assess your property on-site at no cost — giving you an honest evaluation and clear quote." },
+  { icon: Wrench, title: "Class 1 Builder Status", body: "We are a registered Class 1 Builder in Singapore, committed to high-quality workmanship and safety." },
+  { icon: Award, title: "Fast 24hr Response", body: "Construction emergencies can't wait. Our team responds within 24 hours to minimise damage." },
 ];
 
 
@@ -17,7 +17,7 @@ export default function WhyChoose() {
         <div className="mb-14 max-w-3xl">
           <p className="mb-3 text-xs uppercase tracking-[0.25em] text-white/50">— Why Choose Us</p>
           <h2 className="font-display text-4xl font-semibold leading-[1.05] md:text-6xl">
-            Why Homeowners <span className="font-serif italic text-white/70">Trust Us.</span>
+            Why Property Owners <span className="font-serif italic text-white/70">Trust Us.</span>
           </h2>
         </div>
 

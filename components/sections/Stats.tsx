@@ -6,10 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 if (typeof window !== "undefined") { gsap.registerPlugin(ScrollTrigger); };
 
 const stats = [
-  { value: 20, suffix: "+", label: "Years Experience" },
-  { value: 500, suffix: "+", label: "Projects Completed" },
-  { value: 100, suffix: "%", label: "Certified Workers" },
-  { value: 24, suffix: "hr", label: "Response Time" },
+  { value: 20, suffix: "+", label: "Completed Projects" },
+  { value: 18, suffix: "+", label: "Satisfied Customers" },
+  { value: 35, suffix: "+", label: "New Constructions" },
 ];
 
 export default function Stats() {
@@ -40,7 +39,7 @@ export default function Stats() {
 
   return (
     <section className="bg-background">
-      <div ref={ref} className="container-pad grid grid-cols-2 gap-10 py-16 md:grid-cols-4 md:gap-6 md:py-24">
+      <div ref={ref} className="container-pad grid grid-cols-2 gap-10 py-16 md:grid-cols-3 md:gap-6 md:py-24">
         {stats.map((s) => (
           <div key={s.label}>
             <p

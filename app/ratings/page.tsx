@@ -4,9 +4,9 @@ import { Star } from "lucide-react";
 import CTABanner from "@/components/sections/CTABanner";
 
 const reviews = [
-  { name: "Tan Boon Hock", role: "Landed Homeowner · Bukit Timah", text: "Asia Tech Roofing fixed my long-standing roof leak in one afternoon. Very professional and tidy work." },
+  { name: "Tan Boon Hock", role: "Landed Homeowner · Bukit Timah", text: "KSP General Contractors fixed my long-standing roof leak in one afternoon. Very professional and tidy work." },
   { name: "Siti Rahayu", role: "HDB Resident · Tampines", text: "Fast response for our ceiling leak. The team was very polite and explained the repair process clearly." },
-  { name: "Michael Cheng", role: "Warehouse Manager · Jurong", text: "Expert waterproofing for our factory. Highly recommend for any commercial roofing needs in Singapore." },
+  { name: "Michael Cheng", role: "Warehouse Manager · Jurong", text: "Expert waterproofing for our factory. Highly recommend KSP for any commercial roofing needs in Singapore." },
   { name: "David Lim", role: "Bungalow Owner · Sentosa Cove", text: "The team did a full roof overhaul for us. Quality materials and excellent finish. 5 stars." },
   { name: "Ariffin Ismail", role: "Commercial Property Manager", text: "Reliable partner for our maintenance works. Always on time and within budget." },
   { name: "Jessica Wong", role: "Homeowner · Serangoon", text: "Free inspection was honest and helpful. No hard selling, just great advice and solid repair." },
@@ -15,8 +15,8 @@ const reviews = [
 export default function Ratings() {
   return (
     <SiteLayout>
-      <PageHeader eyebrow="Ratings" title="Trusted by 500+ Property Owners.">
-        4.8/5 from 47+ Google Reviews. Real feedback from our clients across Singapore.
+      <PageHeader eyebrow="Ratings" title="Trusted by Many Property Owners.">
+        Real feedback from our clients across Singapore.
       </PageHeader>
 
       <section className="bg-background py-20 md:py-28">

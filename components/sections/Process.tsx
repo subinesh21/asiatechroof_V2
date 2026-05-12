@@ -9,7 +9,7 @@ if (typeof window !== "undefined") { gsap.registerPlugin(ScrollTrigger); };
 const steps = [
   {
     title: "Inspection & Consultation.",
-    desc: "We assess your roof and discuss the best solutions for your needs.",
+    desc: "We assess your property and discuss the best solutions for your needs.",
     icon: Search,
   },
   {
@@ -18,13 +18,13 @@ const steps = [
     icon: Map,
   },
   {
-    title: "Installation & Execution.",
-    desc: "Our expert team installs your roof efficiently and with precision.",
+    title: "Project Execution.",
+    desc: "Our expert team executes your project efficiently and with precision.",
     icon: Wrench,
   },
   {
-    title: "Final Check & Maintenance.",
-    desc: "We ensure quality, clean up the site, and provide ongoing care advice.",
+    title: "Final Check & Handover.",
+    desc: "We ensure quality, clean up the site, and ensure your complete satisfaction.",
     icon: CheckCircle2,
   },
 ];
@@ -39,10 +39,10 @@ export default function Process() {
           trigger: sectionRef.current,
           start: "top 80%",
         },
-        y: 40,
+        x: 60,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
+        duration: 1,
+        stagger: 0.15,
         ease: "power2.out",
       });
     }, sectionRef);
@@ -54,7 +54,7 @@ export default function Process() {
     <section ref={sectionRef} className="bg-[#f8f7f4] py-24 md:py-32">
       <div className="container-pad">
         <h2 className="max-w-md font-display text-4xl font-bold leading-[1.1] text-ink md:text-5xl lg:text-6xl">
-          Our Roofing<br />Process.
+          Our<br />Process.
         </h2>
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -66,7 +66,7 @@ export default function Process() {
               <div className="mb-20">
                 <step.icon className="h-10 w-10 text-ink" strokeWidth={1.5} />
               </div>
-              
+
               <h3 className="mb-4 font-display text-xl font-bold leading-tight text-ink md:text-2xl">
                 {step.title}
               </h3>

@@ -1,8 +1,7 @@
 
 import Hero from "@/components/sections/Hero";
 import Stats from "@/components/sections/Stats";
-import AboutBlurb from "@/components/sections/AboutBlurb";
-import ServicesList from "@/components/sections/ServicesList";
+import ServicesReveal from "@/components/sections/ServicesReveal";
 import Process from "@/components/sections/Process";
 import ProjectsRecent from "@/components/sections/RecentWorks";
 import WhyChoose from "@/components/sections/WhyChoose";
@@ -14,20 +13,28 @@ import CTABanner from "@/components/sections/CTABanner";
 
 export default function IndexPage() {
   return (
-    <>
-      <Hero />
-      <AboutBlurb />
-      <div className="bg-ink">
-        <ServicesList />
+    <main className="relative bg-[#0f172a]">
+      {/* Stable Hero */}
+      <div className="sticky top-0 z-0 h-screen w-full">
+        <Hero />
       </div>
-      <Process />
-      <Stats />
-      <ProjectsRecent />
-      <WhyChoose />
-      <Testimonials />
-      <BlogTeaser />
-      <FAQ />
-      <CTABanner />
-    </>
+
+      {/* Reveal Sections Container */}
+      <div className="relative z-10">
+        <ServicesReveal 
+          title="OUR EXPERTISE"
+          tagline="[ WHAT WE DO ]"
+          description="EXPLORE OUR COMPREHENSIVE CONSTRUCTION AND RENOVATION SOLUTIONS."
+        />
+        <Process />
+        <Stats />
+        <ProjectsRecent />
+        <WhyChoose />
+        <Testimonials />
+        <BlogTeaser />
+        <FAQ />
+        <CTABanner />
+      </div>
+    </main>
   );
 }

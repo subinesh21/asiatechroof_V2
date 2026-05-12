@@ -17,28 +17,28 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://asiatechroof.sg'),
+  metadataBase: new URL('https://kspgeneralcontractors.sg'),
   title: {
-    default: 'Asia Tech Roofing | #1 Roofing Specialist Singapore Since 2004',
-    template: '%s | Asia Tech Roofing Singapore'
+    default: 'KSP General Contractors | General Contracting Perfected by KSP',
+    template: '%s | KSP General Contractors'
   },
-  description: 'Singapore\'s trusted roofing contractor since 2004. Expert roof repair, waterproofing, leak repair & structural works for HDB, landed homes, commercial & industrial. Free inspection. Call now.',
+  description: 'KSP General Contractors are your go-to experts for all general contracting needs in Singapore. We have a reputation for excellence in concrete ceiling repairs, waterproofing, P.U. pressure grouting, polycarbonate roofing, bird netting, and more. Our team of trained professionals is committed to delivering high-quality workmanship and exceptional customer service. Whether a small repair or a large-scale project, KSP General Contractors provides reliable solutions and free project estimates. Contact us today for top-notch general contracting services in Singapore. Available 24/7 for your convenience.',
   keywords: [
-    'roofing contractor Singapore', 'roof repair Singapore', 'roof leak repair Singapore', 'waterproofing Singapore'
+    'KSP General Contractors', 'General Contractors in Singapore', 'Concrete Ceiling Repairs Singapore', 'Waterproofing Services Singapore', 'P.U. Pressure Grouting Singapore', 'Polycarbonate Roofing Singapore'
   ],
-  authors: [{ name: 'Asia Tech Roofing Specialist' }],
+  authors: [{ name: 'KSP General Contractors' }],
   openGraph: {
     type: 'website',
     locale: 'en_SG',
-    url: 'https://asiatechroof.sg',
-    siteName: 'Asia Tech Roofing Specialist',
-    title: 'Asia Tech Roofing | #1 Roofing Specialist Singapore',
-    description: 'Expert roofing, waterproofing & leak repair across Singapore since 2004. Free site inspection. 24hr emergency response.',
+    url: 'https://kspgeneralcontractors.sg',
+    siteName: 'KSP General Contractors',
+    title: 'KSP General Contractors | General Contracting in Singapore',
+    description: 'KSP General Contractors deliver top-notch construction solutions in Singapore, specializing in quality craftsmanship, timely completion, and client satisfaction.',
     images: [{
       url: '/og-image.jpg',
       width: 1200,
       height: 630,
-      alt: 'Asia Tech Roofing Singapore'
+      alt: 'KSP General Contractors Singapore'
     }]
   },
 };

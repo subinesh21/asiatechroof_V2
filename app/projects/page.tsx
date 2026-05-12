@@ -5,7 +5,7 @@ import { LandingAccordionItem } from "@/components/ui/interactive-image-accordio
 
 export default function Projects() {
   const projectsDir = path.join(process.cwd(), 'public', 'Projects');
-  
+
   const getImages = (subDir: string = "") => {
     try {
       const dirPath = path.join(projectsDir, subDir);
@@ -27,13 +27,13 @@ export default function Projects() {
     },
     {
       id: 2,
-      title: 'Membrane Repair',
+      title: 'Structural Repair',
       imageUrl: '/Projects/image-4.webp',
       gallery: getImages('Membrane Repair')
     },
     {
       id: 3,
-      title: 'Metal roof',
+      title: 'External Works',
       imageUrl: '/Projects/image-5.webp',
       gallery: getImages('Metal roof')
     },

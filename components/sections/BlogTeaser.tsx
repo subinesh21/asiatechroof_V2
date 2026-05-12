@@ -65,7 +65,7 @@ export default function BlogTeaser() {
       {/* Header */}
       <div className="absolute top-0 left-0 z-20 pt-12 px-8 md:pt-16 md:px-16 flex items-end gap-8">
         <h2 className="font-display text-4xl font-semibold text-white md:text-7xl">
-          Expert <span className="font-serif italic text-primary">Insights.</span>
+          Latest <span className="font-serif italic text-primary">News.</span>
         </h2>
         <Link href="/blog" className="btn-yellow text-sm hidden md:inline-flex shrink-0 mb-2">
           View All Posts <ArrowUpRight className="h-4 w-4" />

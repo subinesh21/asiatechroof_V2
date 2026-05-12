@@ -3,13 +3,12 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
-  { q: "How much does roof repair cost in Singapore?", a: "Roof repair costs in Singapore vary depending on the size and type of damage. Asia Tech Roofing offers free on-site inspections to provide an accurate quote with no obligation." },
-  { q: "How long does a roof waterproofing job take?", a: "Most waterproofing jobs take 1–3 days depending on the area size. Our certified team works efficiently to minimize disruption to your property." },
-  { q: "Do you serve all areas in Singapore?", a: "Yes, Asia Tech Roofing serves all areas across Singapore including HDB estates, landed properties, commercial buildings, and industrial facilities." },
-  { q: "How quickly can you respond to an emergency roof leak?", a: "We offer 24-hour emergency response for roof leaks across Singapore to minimize water damage to your property." },
-  { q: "What are common roofing problems in Singapore?", a: "Common roofing issues in Singapore include leaks, tile damage, and moss growth due to the tropical climate." },
-  { q: "How can I prevent roof leaks in Singapore?", a: "Regular inspections, timely repairs, and proper drainage maintenance can help prevent roof leaks in Singapore." },
-  { q: "What's the best roofing material for Singapore's climate?", a: "Roofing materials like metal or concrete tiles are ideal for Singapore's climate, offering durability and heat-resistance." },
+  { q: "How much does general contracting work cost in Singapore?", a: "Costs vary depending on the scope and complexity of the project. KSP General Contractors offers free on-site inspections to provide an accurate quote with no obligation." },
+  { q: "How long does a typical renovation or repair job take?", a: "Most projects take 1–5 days depending on the area size and requirements. Our professional team works efficiently to minimize disruption to your property." },
+  { q: "Do you serve all areas in Singapore?", a: "Yes, KSP General Contractors serves all areas across Singapore including residential, commercial, and industrial properties." },
+  { q: "Are you a registered builder in Singapore?", a: "Yes, we are a registered Class 1 Builder in Singapore, ensuring that all our works meet the highest standards of safety and quality." },
+  { q: "How quickly can you respond to an emergency repair?", a: "We offer 24-hour response for urgent repair needs across Singapore to protect your property from further damage." },
+  { q: "What types of services do you specialize in?", a: "We specialize in a wide range of services including painting, waterproofing, roof repairs, P.U. pressure grouting, and general construction works." },
 ];
 
 export default function FAQ() {
@@ -22,7 +21,7 @@ export default function FAQ() {
             Frequently Asked<br />Questions
           </h2>
           <p className="mt-6 max-w-sm text-ink-muted">
-            Quick answers to the questions homeowners ask us most often.
+            Quick answers to the questions our clients ask us most often.
           </p>
         </div>
 

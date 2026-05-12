@@ -1,194 +1,237 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { CheckCircle2, Target, Eye, MapPin, Phone, Mail, Star, Users, Clock, ShieldCheck, Award } from 'lucide-react';
-import SiteLayout from "@/components/SiteLayout";
-import PageHeader from "@/components/PageHeader";
-import Stats from "@/components/sections/Stats";
+"use client";
 
-const whyChooseUs = [
-  { icon: ShieldCheck, title: "Certified Technicians", desc: "Our team consists of highly trained and certified professionals." },
-  { icon: Clock, title: "Fast Response", desc: "We understand urgency; our team responds quickly to all service calls." },
-  { icon: Award, title: "Transparent Quotes", desc: "No hidden costs. We provide clear, itemized pricing for all projects." },
-  { icon: CheckCircle2, title: "Free On-Site Inspections", desc: "We assess your roof's condition at no cost to you." },
-  { icon: Users, title: "Eco-Friendly Materials", desc: "We use sustainable, high-quality materials for lasting results." },
-  { icon: Award, title: "On-Time Delivery", desc: "We respect your schedule and complete projects within the agreed timeline." },
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight, Plus } from "lucide-react";
+import SiteLayout from "@/components/SiteLayout";
+import RecentWorks from "@/components/sections/RecentWorks";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+const values = [
+  {
+    id: 1,
+    title: "Programme",
+    subtitle: "DELIVERED ON TIME, EVERY TIME",
+    description: "EVERY PROJECT RUNS ON A DETAILED BASELINE PROGRAMME WITH MILESTONE TRACKING AND PROACTIVE EARLY WARNING TO PROTECT YOUR COMPLETION DATE.",
+    image: "/about/69bd3af08655fb8bb68ab2d7_Portrait_of_a_202603201301.webp"
+  },
+  {
+    id: 2,
+    title: "Transparency",
+    subtitle: "CLEAR COMMUNICATION",
+    description: "WE MAINTAIN FULL TRANSPARENCY THROUGHOUT THE CONSTRUCTION PROCESS, ENSURING YOU ARE ALWAYS INFORMED AND IN CONTROL OF YOUR PROJECT.",
+    image: "/about/69bd3af64127eed8c30c0b21_Engineer_holding_construction_202603201301.webp"
+  },
+  {
+    id: 3,
+    title: "Fleet",
+    subtitle: "MODERN EQUIPMENT",
+    description: "OUR EXTENSIVE FLEET OF MODERN CONSTRUCTION EQUIPMENT ENSURES THAT WE HAVE THE RIGHT TOOLS FOR EVERY JOB, FROM SMALL RENOVATIONS TO LARGE-SCALE BUILDS.",
+    image: "/about/69bd3b8158b0e252d053c6a5_Construction_manager_standing_202603201319.webp"
+  },
+  {
+    id: 4,
+    title: "Safety",
+    subtitle: "ZERO ACCIDENT GOAL",
+    description: "SAFETY IS OUR TOP PRIORITY. WE RIGOROUSLY ADHERE TO SINGAPORE'S WORKPLACE SAFETY STANDARDS TO ENSURE A SAFE ENVIRONMENT FOR OUR TEAM AND CLIENTS.",
+    image: "/about/69c288d9fb5bed3e49687138_Small_renovation_team_202603201300.webp"
+  }
+];
+
+const sectorsData = [
+  {
+    id: 1,
+    title: "Infrastructure",
+    img: "/about/69c2a254c4cdd2bb1b2f5ff7_jerry-zhang-Oigm8vRIXFM-unsplash-p-500.webp",
+    stats: {
+      label: "SECTOR FOCUS",
+      value: "CIVIL",
+      sub: "Infrastructure"
+    }
+  },
+  {
+    id: 2,
+    title: "Industrial",
+    img: "/about/69c2a27f3d384c514020916b_alain-pham-P_qvsF7Yodw-unsplash-p-500.webp",
+    stats: {
+      label: "SECTOR FOCUS",
+      value: "PLANT",
+      sub: "Industrial"
+    }
+  },
+  {
+    id: 3,
+    title: "Residential",
+    img: "/about/69c2a29be89279aedc9aca65_ricardo-gomez-angel-U_riwEM5piM-unsplash-p-500.webp",
+    stats: {
+      label: "SECTOR FOCUS",
+      value: "HOME",
+      sub: "Residential"
+    }
+  }
 ];
 
 export default function About() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero reveal animations
+      gsap.from(".hero-reveal-text", {
+        y: "100%",
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1.2,
+        ease: "power4.out"
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <SiteLayout>
-      {/* 1. Company Overview & Hero */}
-      <PageHeader eyebrow="About Asia Tech Roofing" title="The Trusted Name in Singapore Roofing & Waterproofing.">
-        Founded on principles of integrity and excellence, Asia Tech Roofing & Waterproofing has grown to become Singapore&apos;s premier contractor for comprehensive roofing solutions.
-      </PageHeader>
+      <main className="bg-white text-[#0f172a] overflow-x-hidden">
 
-      {/* 2. Years of Experience (Stats) */}
-      <Stats />
-
-      {/* Overview Image */}
-      <section className="bg-background pb-20">
-        <div className="container-pad">
-          <div className="relative h-[400px] md:h-[600px] w-full overflow-hidden rounded-3xl shadow-2xl">
-            <Image 
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80" 
-              alt="Professional roofing work" 
-              fill 
-              className="object-cover" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute bottom-10 left-10 text-white">
-              <div className="flex items-center gap-2 mb-2">
-                <Star className="fill-yellow-400 text-yellow-400 h-6 w-6" />
-                <span className="text-2xl font-bold font-display">4.9/5 Rating</span>
-              </div>
-              <p className="text-white/80">Trusted by 500+ Happy Clients in Singapore</p>
+        {/* 1. Hero Section */}
+        <section ref={heroRef} className="pt-32 pb-24 px-8 md:px-16">
+          <h1 className="font-display text-[22vw] font-bold leading-none uppercase tracking-tighter mb-16 flex flex-col">
+            <div className="overflow-hidden">
+              <span className="hero-reveal-text block">ABOUT</span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Mission & Vision */}
-      <section className="bg-ink text-white py-24 md:py-32">
-        <div className="container-pad">
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24">
-            <div className="space-y-6">
-              <div className="h-14 w-14 bg-primary rounded-2xl flex items-center justify-center">
-                <Target className="text-white h-8 w-8" />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold">Our Mission</h2>
-              <p className="text-xl text-white/70 leading-relaxed font-serif italic">
-                To provide reliable, affordable, and fast roofing solutions without compromising on quality, ensuring every home in Singapore is safe and secure.
-              </p>
+            <div className="overflow-hidden self-end">
+              <span className="hero-reveal-text block">US</span>
             </div>
-            <div className="space-y-6">
-              <div className="h-14 w-14 bg-primary rounded-2xl flex items-center justify-center">
-                <Eye className="text-white h-8 w-8" />
-              </div>
-              <h2 className="text-4xl md:text-5xl font-display font-bold">Our Vision</h2>
-              <p className="text-xl text-white/70 leading-relaxed font-serif italic">
-                To be Singapore&apos;s #1 trusted roofing company, known for innovation, integrity, and unparalleled customer service.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          </h1>
 
-      {/* 5. Why Choose Us */}
-      <section className="bg-background py-24 md:py-32">
-        <div className="container-pad">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-6xl font-display font-bold text-ink mb-6">Why Choose Asia Tech?</h2>
-            <p className="text-lg text-ink/70">Built on a foundation of trust, we ensure every project meets the highest standards of safety and durability.</p>
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-[1px] w-12 bg-[#5f90f7]" />
+            <span className="text-[70px] font-bold tracking-[0.3em] text-[#0f172a] uppercase">Building Excellence</span>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyChooseUs.map((item) => (
-              <div key={item.title} className="p-8 bg-white rounded-3xl border border-ink/5 shadow-sm transition-all hover:shadow-xl hover:border-primary/20">
-                <item.icon className="h-10 w-10 text-primary mb-6" />
-                <h3 className="text-xl font-bold text-ink mb-3">{item.title}</h3>
-                <p className="text-ink/60 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* 7. Team & Professionalism */}
-      <section className="bg-ink/5 py-24 md:py-32">
-        <div className="container-pad">
-          <div className="flex flex-col md:flex-row items-center gap-16">
-            <div className="w-full md:w-1/2">
-              <div className="relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
-                <Image 
-                  src="https://images.unsplash.com/photo-1621905235277-33f7c32b903e?w=800&q=80" 
-                  alt="Our professional team" 
-                  fill 
-                  className="object-cover" 
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+            <div className="md:col-span-5">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/about/69bd3ae95af9aba573809a55_Construction_manager_wearing_202603201303.webp"
+                  alt="Construction worker"
+                  fill
+                  className="object-cover"
                 />
               </div>
-            </div>
-            <div className="w-full md:w-1/2 space-y-8">
-              <h2 className="text-4xl md:text-6xl font-display font-bold text-ink">Our Team of Experts</h2>
-              <p className="text-lg text-ink/70 leading-relaxed">
-                Our team is composed of seasoned professionals who are not only experts in roofing and waterproofing but are also dedicated to the safety and satisfaction of our clients. 
+              <p className="mt-8 text-sm md:text-base font-medium leading-relaxed max-w-sm uppercase tracking-tight">
+                FROM NEW CONSTRUCTION TO RENOVATIONS AND ONGOING MAINTENANCE, WE APPROACH EACH PROJECT WITH CLEAR PLANNING, CONSISTENT COMMUNICATION, AND A COMMITMENT TO QUALITY.
               </p>
-              <p className="text-lg text-ink/70 leading-relaxed">
-                We emphasize continuous training and strict adherence to safety protocols, ensuring that every technician at Asia Tech represents our values of professionalism and excellence.
-              </p>
-              <div className="flex items-center gap-4 p-6 bg-white rounded-2xl shadow-sm border border-ink/5">
-                <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <ShieldCheck className="text-primary h-6 w-6" />
+            </div>
+            <div className="md:col-span-7">
+              <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl mb-8">
+                <Image
+                  src="/about/69c288c5b5fb3947c1532e62_Construction_team_on_202603201301.webp"
+                  alt="Construction site"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-[12vw] font-bold text-white/20 uppercase tracking-widest pointer-events-none">
+                    CONSTRUCTION
+                  </span>
                 </div>
-                <p className="font-semibold text-ink">Strict Safety & Professional Standards</p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 8. Service Areas */}
-      <section className="bg-background py-24 md:py-32 border-b border-ink/5">
-        <div className="container-pad text-center">
-          <div className="h-14 w-14 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
-            <MapPin className="text-primary h-8 w-8" />
-          </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-ink mb-6">Service Areas</h2>
-          <p className="text-xl text-ink/70 max-w-2xl mx-auto font-serif italic mb-12">
-            Serving all across Singapore — providing reliable solutions for Residential, Commercial, and Industrial properties.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {["Central", "North", "East", "West"].map((region) => (
-              <div key={region} className="py-4 px-6 bg-ink/5 rounded-xl font-bold text-ink/80">{region} Singapore</div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Contact Section / CTA */}
-      <section className="bg-white py-24 md:py-32">
-        <div className="container-pad">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-4xl md:text-6xl font-display font-bold text-ink">Get in Touch</h2>
-              <p className="text-lg text-ink/70">Have a question or need a free inspection? Reach out to our friendly team today.</p>
-              
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <Phone className="text-primary h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-ink/40 font-bold uppercase tracking-wider">Phone</p>
-                    <p className="text-lg font-bold text-ink">+65 90545431 / +65 98927202</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <Mail className="text-primary h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-ink/40 font-bold uppercase tracking-wider">Email</p>
-                    <p className="text-lg font-bold text-ink">sales@asiatechroof.sg</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <Link href="/contact" className="btn-yellow text-lg px-10">
-                  Get a Free Inspection Today
-                </Link>
-              </div>
-            </div>
-            <div className="relative aspect-square md:aspect-video rounded-3xl overflow-hidden shadow-2xl">
-              <Image 
-                src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?w=800&q=80" 
-                alt="Singapore Architecture" 
-                fill 
-                className="object-cover" 
+        {/* 2. Focus Section */}
+        <section className="py-24 px-8 md:px-16 border-t border-black/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
+              <Image
+                src="/about/69b69f1b7e4b5238b3f9d2a2_76bb791547e57cae261c24dae49b1368_excavator-loading.webp"
+                alt="Excavator"
+                fill
+                className="object-cover"
               />
             </div>
+            <div className="flex flex-col gap-12">
+              <div className="flex gap-4 items-center">
+                <span className="px-3 py-1 border border-black/20 rounded-md text-[10px] font-bold uppercase">About</span>
+                <span className="px-3 py-1 border border-black/20 rounded-md text-[10px] font-bold uppercase">KSP</span>
+              </div>
+              <h2 className="font-display text-6xl md:text-8xl font-bold uppercase leading-none">
+                FOCUS ON DELIVERING
+              </h2>
+              <div className="flex gap-8 border-t border-black/10 pt-8 max-w-xl">
+                <div className="w-1 bg-[#5f90f7] shrink-0" />
+                <p className="text-sm md:text-base text-[#0f172a]/70 uppercase font-medium leading-relaxed">
+                  WE FOCUS ON DELIVERING CONSTRUCTION AND PROPERTY SERVICES THAT ARE PRACTICAL, EFFICIENT, AND BUILT FOR LONG-TERM PERFORMANCE.
+                </p>
+              </div>
+
+              <ul className="flex flex-col gap-6 mt-4">
+                {[
+                  "STRUCTURED PROJECT PLANNING AND EXECUTION",
+                  "RELIABLE TIMELINES AND TRANSPARENT COMMUNICATION",
+                  "SKILLED CRAFTSMANSHIP ACROSS ALL PROJECT STAGES"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-4 items-start border-t border-black/5 pt-4">
+                    <span className="text-[10px] font-bold text-black/30">0{i + 1}</span>
+                    <span className="text-sm font-bold tracking-tight">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-4 bg-[#5f90f7] text-white px-8 py-4 rounded-md font-bold uppercase tracking-widest text-xs self-start hover:bg-[#0f172a] transition-colors"
+              >
+                OUR SERVICES <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 3. Values Grid */}
+        <section className="py-24 px-8 md:px-16 bg-white/30">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {values.map((v) => (
+              <div key={v.id} className="bg-[#f0f0eb] rounded-3xl p-8 md:p-12 flex flex-col gap-8 shadow-sm border border-black/5 relative overflow-hidden group">
+                <div className="flex justify-between items-start z-10">
+                  <div className="relative w-32 aspect-video rounded-xl overflow-hidden border border-black/5">
+                    <Image src={v.image} alt={v.title} fill className="object-cover" />
+                  </div>
+                  <span className="text-[10px] font-bold text-black/20 uppercase tracking-widest">{v.id}</span>
+                </div>
+
+                <div className="z-10">
+                  <h3 className="font-display text-4xl md:text-5xl font-bold uppercase mb-2">{v.title}</h3>
+                  <p className="text-[10px] font-bold text-[#5f90f7] uppercase tracking-[0.2em] mb-8">{v.subtitle}</p>
+
+                  <div className="flex gap-6 items-start border-t border-black/10 pt-8 mt-auto">
+                    <Plus className="h-4 w-4 shrink-0 text-black/30" />
+                    <p className="text-xs md:text-sm font-medium leading-relaxed text-[#0f172a]/70 uppercase max-w-sm">
+                      {v.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. Sectors Sticky Section (Now using Reusable RecentWorks) */}
+        <RecentWorks
+          title={<>Sectors<br />we serve</>}
+          tagline="WE PROVIDE SPECIALIZED CONSTRUCTION SOLUTIONS ACROSS MULTIPLE KEY SECTORS IN SINGAPORE."
+          data={sectorsData}
+        />
+
+      </main>
     </SiteLayout>
   );
 }

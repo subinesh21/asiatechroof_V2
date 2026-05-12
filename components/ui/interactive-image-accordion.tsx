@@ -46,10 +46,9 @@ const AccordionItem = ({ item, isActive, onClick, onMouseEnter }: AccordionItemP
         className={`
           absolute text-white text-lg font-semibold whitespace-nowrap
           transition-all duration-300 ease-in-out
-          ${
-            isActive
-              ? 'bottom-8 left-8 rotate-0' 
-              : 'bottom-24 left-1/2 -translate-x-1/2 rotate-90 origin-center'
+          ${isActive
+            ? 'bottom-8 left-8 rotate-0'
+            : 'bottom-24 left-1/2 -translate-x-1/2 rotate-90 origin-center'
           }
         `}
       >
@@ -70,7 +69,7 @@ export function LandingAccordionItem({ categories }: { categories: Category[] })
     <div className="bg-white font-sans overflow-hidden">
       <section className="container-pad py-16 md:py-24">
         <div className="flex flex-col items-center gap-10 md:gap-14">
-          
+
           {/* Top Side: Text Content */}
           <div className="w-full text-center max-w-6xl mx-auto">
             <h1 className="text-[32px] md:text-[64px] font-display font-bold text-ink leading-tight tracking-tighter">
@@ -109,8 +108,8 @@ export function LandingAccordionItem({ categories }: { categories: Category[] })
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {categories[activeIndex].gallery.map((img, idx) => (
                 <div key={idx} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-cream">
-                  <Image 
-                    src={img} 
+                  <Image
+                    src={img}
                     alt={`${categories[activeIndex].title} project ${idx + 1}`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"

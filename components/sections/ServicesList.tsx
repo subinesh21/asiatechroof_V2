@@ -12,24 +12,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 if (typeof window !== "undefined") { gsap.registerPlugin(ScrollTrigger); };
 
-const services = [
-  { num: "01", title: "Roof Repair", desc: "From minor patch-ups to full roof replacements. We handle metal, concrete, tile, and membrane roofing systems.", img: "/service/roof-service.webp", to: "/services/roof-repair" },
-  { num: "02", title: "Leak Repair", desc: "Fast diagnosis and lasting repair of roof leaks — protecting your property from water damage and structural deterioration.", img: "/service/leak-service.webp", to: "/services/leak-repair" },
-  { num: "03", title: "Waterproofing", desc: "Advanced waterproofing membranes and coatings for flat roofs, terraces, basements, and wet areas.", img: "/service/waterproof-service.webp", to: "/services/waterproofing" },
-  { num: "04", title: "Structural Works", desc: "Reinforcement, repointing, and structural restoration to extend the lifespan of your building's roof framework.", img: "/service/structural-service.webp", to: "/services/structural-works" },
-];
+import { services } from "@/lib/services-data";
 
 export default function ServicesList() {
   const sectionRef = useRef<HTMLElement>(null);
-  const innerRef   = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
     if (!sectionRef.current || !innerRef.current) return;
     const section = sectionRef.current;
-    const inner   = innerRef.current;
-    const rows    = inner.querySelectorAll<HTMLElement>(".service-row");
-    
+    const inner = innerRef.current;
+    const rows = inner.querySelectorAll<HTMLElement>(".service-row");
+
     const ctx = gsap.context(() => {
       // ── Master Timeline: Reveal (0-20%) -> Pin/Scroll List (20-100%) ──
       const masterTl = gsap.timeline({
@@ -117,9 +112,8 @@ export default function ServicesList() {
                       {s.num}
                     </p>
                     {/* Title */}
-                    <h3 className={`col-span-11 md:col-span-4 font-display text-xl font-semibold transition-colors duration-500 md:text-2xl ${
-                      isOpen ? "text-white" : "text-white/40"
-                    }`}>
+                    <h3 className={`col-span-11 md:col-span-4 font-display text-xl font-semibold transition-colors duration-500 md:text-2xl ${isOpen ? "text-white" : "text-white/40"
+                      }`}>
                       {s.title}
                     </h3>
                     {/* Description — aligns under col 6 on desktop */}
@@ -128,15 +122,14 @@ export default function ServicesList() {
                     </p>
                     {/* Copyright */}
                     <p className="hidden md:block md:col-span-2 text-xs text-white/30 text-right self-start md:col-start-11">
-                      [ Roofing © 2026 ]
+                      [ KSP General Contractors © 2026 ]
                     </p>
                   </div>
 
                   {/* ── Expandable image — starts at col 5 (same as desc) ── */}
                   <div
-                    className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-700 ease-out ${
-                      isOpen ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    }`}
+                    className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-700 ease-out ${isOpen ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
                   >
                     <div className="min-h-0 overflow-hidden">
                       {/* Indent to col 6: 1 (num) + 4 (title) = 5 cols = 41.666% */}
@@ -145,16 +138,14 @@ export default function ServicesList() {
                           <Image width={800} height={600}
                             src={s.img}
                             alt={s.title}
-                            className={`h-72 w-full object-cover transition-transform [transition-duration:1200ms] md:h-[500px] ${
-                              isOpen ? "scale-100" : "scale-110"
-                            }`}
+                            className={`h-72 w-full object-cover transition-transform [transition-duration:1200ms] md:h-[500px] ${isOpen ? "scale-100" : "scale-110"
+                              }`}
                             loading="lazy"
                           />
                           {/* View pill — on the image, left-aligned, vertically centered */}
                           <span
-                            className={`absolute left-6 top-1/2 -translate-y-1/2 inline-flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all duration-500 ${
-                              isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
-                            }`}
+                            className={`absolute left-6 top-1/2 -translate-y-1/2 inline-flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all duration-500 ${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                              }`}
                           >
                             View <Eye className="h-4 w-4" />
                           </span>

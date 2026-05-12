@@ -11,14 +11,14 @@ export default function CTABanner() {
       <div className="w-full relative pl-4 md:pl-17 lg:pl-28">
         <div className="max-w-4xl">
           <h2 className="font-display text-5xl font-semibold leading-[1.1] text-white drop-shadow md:text-8xl mb-8">
-            READY TO PROTECT<br /><span className="text-primary italic font-serif">YOUR PROPERTY?</span>
+            Ready to Build Your<br /><span className="text-primary italic font-serif">Dream Home?</span>
           </h2>
-          <div className="max-w-md">
+          <div className="max-w-2xl">
             <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
-              Get a free on-site inspection from Singapore&apos;s most trusted roofing specialists. No obligation, just expert advice.
+              Contact KSP General Contractors today for a consultation and let us help you transform your house into a home.
             </p>
             <Link href="/contact" className="btn-yellow text-lg px-10 py-4">
-              Get Free Inspection <ArrowUpRight className="h-5 w-5" />
+              Request Free Quote <ArrowUpRight className="h-5 w-5" />
             </Link>
           </div>
         </div>

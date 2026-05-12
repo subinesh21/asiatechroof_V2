@@ -81,10 +81,10 @@ export default function Testimonials() {
           </div>
 
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-5 text-ink text-center">
-            What Our Clients Say
+            What People Say About Us
           </h2>
           <p className="text-center mt-5 text-ink/60 text-base">
-            See why homeowners and businesses trust us with their roofing needs.
+            See why homeowners and businesses trust us with their general contracting needs.
           </p>
         </motion.div>
 

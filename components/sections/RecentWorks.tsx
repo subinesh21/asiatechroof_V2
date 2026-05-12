@@ -1,152 +1,186 @@
 "use client";
-import Image from 'next/image';
-import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
-import Link from 'next/link';
+
+import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-;
-;
-;
 
-if (typeof window !== "undefined") { gsap.registerPlugin(ScrollTrigger); };
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
-const projects = [
-  { 
-    year: "2025", 
-    title: "Fast and Reliable Roof Leak Repair in Singapore", 
-    warranty: "10-Year Warranty", 
-    img: "/Projects/IMG-20250413-WA0049.webp" 
+interface ProjectData {
+  id: number;
+  title: string;
+  img: string;
+  stats: {
+    label: string;
+    value: string;
+    sub: string;
+  };
+}
+
+interface RecentWorksProps {
+  title?: React.ReactNode;
+  tagline?: string;
+  data?: ProjectData[];
+}
+
+const defaultProjects: ProjectData[] = [
+  {
+    id: 1,
+    title: "Full Home Renovation & Structural Enhancement",
+    img: "https://images.unsplash.com/photo-1541913007797-45f2807d5ee5?w=1200&q=80",
+    stats: {
+      label: "PROJECTS COMPLETED",
+      value: "320+",
+      sub: "In General Contracting"
+    }
   },
-  { 
-    year: "2023", 
-    title: "Commercial Building Waterproofing Solution", 
-    warranty: "7-Year Warranty", 
-    img: "/Projects/IMG-20221215-WA0065.webp" 
+  {
+    id: 2,
+    title: "Commercial Property Waterproofing & Maintenance",
+    img: "https://images.unsplash.com/photo-1590725140246-20acddc1ec6d?w=1200&q=80",
+    stats: {
+      label: "EXPERIENCE",
+      value: "10 YEARS",
+      sub: "Building Trust"
+    }
   },
-  { 
-    year: "2022", 
-    title: "High-Quality Residential Roof Overhaul", 
-    warranty: "10-Year Warranty", 
-    img: "/Projects/IMG-20221215-WA0047.webp" 
+  {
+    id: 3,
+    title: "Residential Interior & Exterior Painting Works",
+    img: "https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=1200&q=80",
+    stats: {
+      label: "SATISFACTION",
+      value: "100%",
+      sub: "Client Retention"
+    }
   },
-  { 
-    year: "2024", 
-    title: "Industrial Metal Roofing Project", 
-    warranty: "5-Year Warranty", 
-    img: "/Projects/IMG-20221215-WA0062.webp" 
+  {
+    id: 4,
+    title: "Industrial Roof Restoration & Protection",
+    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
+    stats: {
+      label: "WARRANTY",
+      value: "10-YEAR",
+      sub: "Peace of Mind"
+    }
   },
 ];
 
-export default function ProjectsRecent() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const stackRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+export default function RecentWorks({
+  title = <>Proven<br />results</>,
+  tagline = "WE MEASURE SUCCESS THROUGH COMPLETED PROJECTS AND SATISFIED CLIENTS. SCROLL FOR MORE.",
+  data = defaultProjects
+}: RecentWorksProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current || !stackRef.current) return;
-    const section = sectionRef.current;
-    const cards = stackRef.current.querySelectorAll<HTMLElement>(".project-card");
+    if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // All cards start off-screen (below) except the first
-      cards.forEach((card, i) => {
-        if (i > 0) gsap.set(card, { yPercent: 100 });
+      // Pin the entire section
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: ".left-content",
+        pinSpacing: false,
       });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${window.innerHeight * (projects.length + 0.5)}`,
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          anticipatePin: 1,
-          onUpdate(self) {
-            const idx = Math.min(
-              projects.length - 1,
-              Math.floor(self.progress / (1 / projects.length))
-            );
-            setActive(idx);
-          },
-        },
+      // Animate the stats blocks in the left column
+      data.forEach((_, i) => {
+        ScrollTrigger.create({
+          trigger: `.project-img-${i}`,
+          start: "top center",
+          end: "bottom center",
+          onToggle: (self) => {
+            if (self.isActive) {
+              gsap.to(`.stat-block-${i}`, {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out",
+              });
+            } else {
+              gsap.to(`.stat-block-${i}`, {
+                opacity: 0,
+                y: 20,
+                duration: 0.5,
+                ease: "power2.in",
+              });
+            }
+          }
+        });
       });
-
-      // Each card slides up from bottom and covers the previous one
-      cards.forEach((card, i) => {
-        if (i > 0) {
-          tl.to(
-            card,
-            { yPercent: 0, ease: "power2.out", duration: 1 },
-            (i - 1) * 1
-          );
-        }
-      });
-    }, section);
+    }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [data]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-background"
-    >
-      {/* Header — left-aligned, above the text column */}
-      <div className="absolute top-0 left-0 z-20 pt-10 px-8 md:pt-12 md:px-16 flex items-end gap-6">
-        <h2 className="font-display text-4xl font-semibold text-ink md:text-6xl">
-          Our Recent Projects
-        </h2>
-        <Link href="/projects" className="btn-ghost-dark text-sm inline-flex shrink-0 mb-1">
-          More Projects <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
+    <section ref={containerRef} className="bg-[#0f172a] text-white">
+      <div className="flex flex-col md:flex-row min-h-screen">
+        
+        {/* Left Column: Pinned via GSAP */}
+        <div className="left-content md:w-1/2 md:h-screen p-8 md:p-16 flex flex-col justify-between">
+          <div>
+            <h2 className="font-display text-[8vw] md:text-[6vw] font-bold leading-none text-[#5f90f7] uppercase mb-8">
+              {title}
+            </h2>
+            <div className="flex gap-8 border-t border-white/10 pt-8 max-w-sm">
+              <div className="w-1 bg-[#5f90f7] shrink-0" />
+              <p className="text-xs tracking-widest text-white/60 uppercase leading-relaxed">
+                {tagline}
+              </p>
+            </div>
+          </div>
 
-      {/* Stacking cards container */}
-      <div ref={stackRef} className="relative h-full w-full">
-        {projects.map((p, i) => {
-          const isActive = active === i;
-          return (
-            <div
-              key={p.title}
-              className="project-card absolute inset-0 h-full w-full bg-background"
-              style={{ zIndex: i + 1 }}
-            >
-              <div className="grid h-full grid-cols-1 md:grid-cols-12">
-
-                {/* Left — Text */}
-                <div className="flex flex-col justify-center px-8 pt-28 pb-10 md:col-span-5 md:px-16 md:pt-0 md:pb-0">
-                  <p className="font-display text-sm tracking-widest text-ink/30 uppercase">
-                    {p.year}
+          {/* Dynamic Stats Section */}
+          <div className="relative h-48 mt-12">
+            {data.map((p, i) => (
+              <div 
+                key={p.id} 
+                className={`stat-block-${i} absolute inset-0 opacity-0 transform translate-y-5`}
+              >
+                <div className="bg-white/5 border border-white/10 p-8 rounded-2xl backdrop-blur-sm max-w-xs">
+                  <p className="text-[10px] font-bold tracking-[0.2em] text-[#5f90f7] uppercase mb-4">
+                    {p.stats.label}
                   </p>
-                  <h3 className={`mt-4 font-display text-3xl font-bold leading-tight transition-colors duration-500 md:text-5xl ${
-                    isActive ? "text-ink" : "text-ink/30"
-                  }`}>
-                    {p.title}
-                  </h3>
-                  <p className="mt-4 text-sm text-ink/50">[ • {p.warranty} ]</p>
-                  <Link href="/projects" className="btn-ghost-dark mt-8 self-start text-sm">
-                    View Project <ArrowUpRight className="h-4 w-4" />
-                  </Link>
+                  <div className="flex items-baseline gap-4">
+                    <p className="text-5xl font-bold font-display">{p.stats.value}</p>
+                    <p className="text-[10px] text-white/40 uppercase tracking-widest">{p.stats.sub}</p>
+                  </div>
+                  <div className="mt-8 h-[1px] w-full bg-white/10 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[#5f90f7] transform -translate-x-full" />
+                  </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-                {/* Right — Image */}
-                <div className="relative overflow-hidden md:col-span-7">
-                  <Image width={800} height={600}
-                    src={p.img}
-                    alt={p.title}
-                    className={`h-full w-full object-cover transition-transform [transition-duration:1200ms] ${
-                      isActive ? "scale-100" : "scale-110"
-                    }`}
-                    loading="lazy"
-                  />
-                </div>
-
+        {/* Right Column: Scrolling Images */}
+        <div className="md:w-1/2 p-8 md:p-16 flex flex-col gap-16 md:gap-32">
+          {data.map((p, i) => (
+            <div key={p.id} className={`project-img-${i} flex flex-col gap-6`}>
+              <div className="relative aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden group">
+                <Image 
+                  src={p.img} 
+                  alt={p.title} 
+                  fill 
+                  className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-[10px] font-bold tracking-widest text-[#5f90f7] uppercase">[ PROJECT {i + 1} ]</p>
+                <h3 className="text-xl md:text-2xl font-bold max-w-md uppercase">{p.title}</h3>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
+
       </div>
     </section>
   );
